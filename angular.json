@@ -27,6 +27,8 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -61,6 +63,10 @@
             "production": {
               "buildTarget": "Terezya:build:production"
             },
+            "options": {
+              "browserTarget": "your-app-name:build",
+               "proxyConfig": "proxy.conf.json"
+            },
             "development": {
               "buildTarget": "Terezya:build:development"
             }
@@ -92,5 +98,9 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
+  
 }

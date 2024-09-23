@@ -1,0 +1,8 @@
+<p>product-list works!</p>
+<div class="card-container">
+    <div *ngFor="let product of products" class="card">
+      <img [src]="product.productImageUrl" alt="{{ product.productImageUrl }}">
+      <h2>{{ product.nameproductName }}</h2>
+      <p>{{ product.productDescription }}</p>
+    </div>
+  </div>
