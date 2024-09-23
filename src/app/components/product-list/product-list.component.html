@@ -6,8 +6,25 @@
       <p>{{ product.productDescription }}</p>
     </div>
   </div> -->
-  <div *ngFor="let product of products">
-    <h3>{{ product.nameproductName  }}</h3>
-    <p>{{ product.productDescription }}</p>
-    <p><img [src]="product.productImageUrl" alt="{{ product.productImageUrl }}"></p>
+  <div class="container">
+    <!-- <div *ngFor="let product of products">
+      <h3>{{ product.nameproductName  }}</h3>
+      <p>{{ product.productDescription }}</p>
+      <p><img [src]="product.productImageUrl" alt="{{ product.productImageUrl }}"></p>
+    </div> -->
   </div>
+
+ <div *ngIf="products.length > 0; else loading">
+  <ul>
+    <li *ngFor="let product of products">
+      <h3>{{ product.nameproductName }}</h3>
+      <p>{{ product.productDescription }}</p>
+      <p>Price: {{ product.productPrice }}</p>
+      <img [src]="product.productImageUrl" alt="{{ product.productImageUrl }}" />
+    </li>
+  </ul>
+</div>
+
+<ng-template #loading>
+  <p>Loading products...</p>
+</ng-template>

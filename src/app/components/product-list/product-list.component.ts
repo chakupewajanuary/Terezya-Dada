@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../services/product.service';
+import { Product } from '../../products/products.module';
 
 @Component({
   selector: 'app-product-list',
@@ -10,35 +11,65 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  products: any[] = [];
-  product: any;
+  products: Product[] = []; 
+  fetched: any;
 
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.fetchProducts().subscribe(
-      (data)=>{
-        this.products = data;
-      },
+    this.fetchProducts();
+    this.getfetchedData();
+    // //for swagger api
+    // this.productService.fetchProducts().subscribe(
+    //   (data)=>{
+    //     this.products = data;
+    //   },
       
-    )    
-    console.log(this.products);
+    // )    
+    // console.log(this.products);
+    // //for jsonserve api
     
-    this.productService.getData().subscribe({
-      next: data => {
-        console.log('Data:', data);
-        this.product=data;
-      },
-      error: err => {
-        console.error('Error:', err);
-      },
-      complete: () => {
-        console.log('Request completed');
-      },
-    });
-    console.log(this.product)
+    // this.productService.getData().subscribe({
+    //   next: data => {
+    //     console.log('Data:', data);
+    //     this.fetched=data;
+    //   },
+    //   error: err => {
+    //     console.error('Error:', err);
+    //   },
+    
+    // });
+    // console.log(this.fetched)
   }
+  
+  //swagger
+fetchProducts() {
+  this.productService.fetchProducts().subscribe(
+    (data) => {
+      this.products = data.map(item => new Product(item.productId, item.nameproductName, item.productDescription, item.productPrice, item.productImageUrl));
+      console.log(this.products); // Log the fetched products
+    },
+    (error) => {
+      console.error('Error fetching products:', error); // Handle errors
+    }
+  );
+}
+//fetch data from json 
+getfetchedData(){
+  this.productService.getData().subscribe({
+    next: data => {
+      console.log('Data:', data);
+      this.fetched=data;
+    },
+    error: err => {
+      console.error('Error:', err);
+    },
+  
+  });
+  console.log(this.fetched)
+}
+
 }
 
 
