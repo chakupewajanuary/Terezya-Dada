@@ -7,7 +7,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, ProductListComponent,],
+  imports: [CommonModule, HttpClientModule, ProductListComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'] // Corrected this line
 })
