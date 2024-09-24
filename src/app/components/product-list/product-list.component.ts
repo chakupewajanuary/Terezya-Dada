@@ -20,40 +20,20 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.fetchProducts();
     this.getfetchedData();
-    // //for swagger api
-    // this.productService.fetchProducts().subscribe(
-    //   (data)=>{
-    //     this.products = data;
-    //   },
-      
-    // )    
-    // console.log(this.products);
-    // //for jsonserve api
-    
-    // this.productService.getData().subscribe({
-    //   next: data => {
-    //     console.log('Data:', data);
-    //     this.fetched=data;
-    //   },
-    //   error: err => {
-    //     console.error('Error:', err);
-    //   },
-    
-    // });
-    // console.log(this.fetched)
   }
   
   //swagger
 fetchProducts() {
-  this.productService.fetchProducts().subscribe(
-    (data) => {
-      this.products = data.map(item => new Product(item.productId, item.nameproductName, item.productDescription, item.productPrice, item.productImageUrl));
-      console.log(this.products); // Log the fetched products
+  this.productService.fetchProducts().subscribe({
+    next: data => {
+      console.log('Data:', data);
+      this.products=data;
     },
-    (error) => {
-      console.error('Error fetching products:', error); // Handle errors
-    }
-  );
+    error: err => {
+      console.error('Error:', err);
+    },
+  });
+  console.log(this.products)
 }
 //fetch data from json 
 getfetchedData(){
@@ -80,4 +60,15 @@ getfetchedData(){
 // },
 // (error) => {
 //   console.error('Error fetching products:', error);
+// }
+
+
+
+                        // swagger part
+// (data) => {
+//   this.products = data.map(item => new Product(item.productId, item.nameproductName, item.productDescription, item.productPrice, item.productImageUrl));
+//   console.log(this.products); // Log the fetched products
+// },
+// (error) => {
+//   console.error('Error fetching products:', error); // Handle errors
 // }
