@@ -1,4 +1,13 @@
-<p>product-list works!</p> 
+<h1>Amazon Products</h1>
+<div *ngFor="let product of products">
+  <h2>{{ product.productName }}</h2>
+  <p>Price: ${{ product.productPrice }}</p>
+  <img [src]="product.productImageUrl" alt="{{ product.productName }}" width="200">
+  <p>{{ product.productDescription }}</p>
+</div>
+
+
+<!-- <p>product-list works!</p> 
  <div *ngIf="products.length > 0; else loading">
   <ul>
     <li *ngFor="let product of products">
@@ -12,4 +21,4 @@
 
 <ng-template #loading>
   <p>Loading products...</p>
-</ng-template>
+</ng-template> -->
